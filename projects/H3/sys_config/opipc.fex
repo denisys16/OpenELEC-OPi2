@@ -955,18 +955,14 @@ pmuic_type = 2
 pmu_gpio0 = port:PL06<1><1><2><1>
 pmu_level0 = 11300
 pmu_level1 = 1100
-extremity_freq = 1008000000
-max_freq = 1008000000
+extremity_freq = 816000000
+max_freq = 816000000
 min_freq = 480000000
-LV_count = 4
-LV1_freq = 1008000000
-LV1_volt = 1140
-LV2_freq = 960000000
-LV2_volt = 1080
-LV3_freq = 816000000
-LV3_volt = 1020
-LV4_freq = 480000000
-LV4_volt = 980
+LV_count = 2
+LV1_freq = 816000000
+LV1_volt = 1020
+LV2_freq = 480000000
+LV2_volt = 980
 
 [gpu_dvfs_table]
 G_LV_count = 3
