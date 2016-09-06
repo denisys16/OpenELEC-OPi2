@@ -93,7 +93,7 @@ pll_de           = 864
 ;dram_para2 = 0x00001100  ;on behalf of a single channel is enabled dram
 ;*****************************************************************************
 [dram_para]
-dram_clk        = 624
+dram_clk        = 648
 dram_type       = 3
 dram_zq         = 0x3b3bfb
 dram_odt_en     = 0x1
@@ -321,13 +321,14 @@ ths_trip2_0 = 105
 ;cooler_table  cooler_count <=32
 ;----------------------------------------------------------------------------------
 [cooler_table]
-cooler_count = 6
-cooler0 = "1296000 4 4294967295 0"
-cooler1 = "1200000 4 4294967295 0"
-cooler2 = "1008000 4 4294967295 0"
-cooler3 =  "816000 4 4294967295 0"
-cooler4 =  "648000 4 4294967295 0"
-cooler5 =  "480000 1 4294967295 0"
+cooler_count = 7
+cooler0 = "1344000 4 4294967295 0"
+cooler1 = "1296000 4 4294967295 0"
+cooler2 = "1200000 4 4294967295 0"
+cooler3 = "1008000 4 4294967295 0"
+cooler4 =  "816000 4 4294967295 0"
+cooler5 =  "648000 4 4294967295 0"
+cooler6 =  "480000 1 4294967295 0"
 
 [nand0_para]
 nand_support_2ch    = 0
@@ -955,24 +956,26 @@ pmuic_type = 2
 pmu_gpio0 = port:PL06<1><1><2><1>
 pmu_level0 = 11300
 pmu_level1 = 1100
-extremity_freq = 1296000000
-max_freq = 1200000000
+extremity_freq = 1344000000
+max_freq = 1344000000
 min_freq = 480000000
-LV_count = 7
-LV1_freq = 1296000000
-LV1_volt = 1320
-LV2_freq = 1200000000
-LV2_volt = 1240
-LV3_freq = 1104000000
-LV3_volt = 1180
-LV4_freq = 1008000000
-LV4_volt = 1140
-LV5_freq = 960000000
-LV5_volt = 1080
-LV6_freq = 816000000
-LV6_volt = 1020
-LV7_freq = 480000000
-LV7_volt = 980
+LV_count = 8
+LV1_freq = 1344000000
+LV1_volt = 1360
+LV2_freq = 1296000000
+LV2_volt = 1320
+LV3_freq = 1200000000
+LV3_volt = 1240
+LV4_freq = 1104000000
+LV4_volt = 1180
+LV5_freq = 1008000000
+LV5_volt = 1140
+LV6_freq = 960000000
+LV6_volt = 1080
+LV7_freq = 816000000
+LV7_volt = 1020
+LV8_freq = 480000000
+LV8_volt = 980
 
 [gpu_dvfs_table]
 G_LV_count = 3
