@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="busybox"
-PKG_VERSION="1.25.1"
+PKG_VERSION="1.26.1"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
@@ -45,11 +45,6 @@ PKG_MAKE_OPTS_INIT="ARCH=$TARGET_ARCH \
                     CROSS_COMPILE=$TARGET_PREFIX \
                     KBUILD_VERBOSE=1 \
                     install"
-
-# nano text editor
-  if [ "$NANO_EDITOR" = "yes" ]; then
-    PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET nano"
-  fi
 
 # nfs support
 if [ "$NFS_SUPPORT" = yes ]; then
@@ -173,6 +168,7 @@ makeinstall_target() {
 
   mkdir -p $INSTALL/usr/lib/openelec
     cp $PKG_DIR/scripts/fs-resize $INSTALL/usr/lib/openelec
+      sed -e "s/@DISTRONAME@/$DISTRONAME/g" -i $INSTALL/usr/lib/openelec/fs-resize
 
   mkdir -p $INSTALL/etc
     cp $PKG_DIR/config/profile $INSTALL/etc
@@ -254,5 +250,6 @@ makeinstall_init() {
   fi
 
   cp $BUSYBOX_INIT_FILE $INSTALL
+    sed -e "s/@DISTRONAME@/$DISTRONAME/g" -i $INSTALL/init
   chmod 755 $INSTALL/init
 }

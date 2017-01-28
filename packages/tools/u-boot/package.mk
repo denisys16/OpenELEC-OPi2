@@ -22,12 +22,12 @@ if [ "$UBOOT_VERSION" = "default" ]; then
   PKG_SITE="http://www.denx.de/wiki/U-Boot/WebHome"
   PKG_URL="ftp://ftp.denx.de/pub/u-boot/$PKG_NAME-$PKG_VERSION.tar.bz2"
 elif [ "$UBOOT_VERSION" = "imx6-cuboxi" ]; then
-  PKG_VERSION="73d683b"
+  PKG_VERSION="10acd12"
   PKG_SITE="http://imx.solid-run.com/wiki/index.php?title=Building_the_kernel_and_u-boot_for_the_CuBox-i_and_the_HummingBoard"
   PKG_GIT_URL="https://github.com/SolidRun/u-boot-imx6.git"
   PKG_GIT_BRANCH="imx6"
 elif [ "$UBOOT_VERSION" = "sunxi" ]; then
-  PKG_VERSION="2016.11"
+  PKG_VERSION="2017.01"
   PKG_SITE="http://www.denx.de/wiki/U-Boot/WebHome"
   PKG_URL="ftp://ftp.denx.de/pub/u-boot/$PKG_NAME-$PKG_VERSION.tar.bz2"
 else
@@ -43,6 +43,10 @@ PKG_SHORTDESC="u-boot: Universal Bootloader project"
 PKG_LONGDESC="Das U-Boot is a cross-platform bootloader for embedded systems, used as the default boot loader by several board vendors. It is intended to be easy to port and to debug, and runs on many supported architectures, including PPC, ARM, MIPS, x86, m68k, NIOS, and Microblaze."
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
+
+if [ "$UBOOT_VERSION" = "sunxi" ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET Python:host"
+fi
 
 pre_configure_target() {
   if [ -z "$UBOOT_CONFIG" ]; then

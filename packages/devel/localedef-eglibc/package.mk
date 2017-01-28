@@ -16,44 +16,27 @@
 #  along with OpenELEC.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-PKG_NAME="timezone-data"
-PKG_VERSION="2016a"
+PKG_NAME="localedef-eglibc"
+PKG_VERSION="2.14.1-r17443-ptx1"
 PKG_REV="1"
 PKG_ARCH="any"
-PKG_LICENSE="Public Domain"
-PKG_SITE="http://www.iana.org/time-zones"
-# this package actually contains both packages tzcode and tzdate in a single package
-# duplicate files are the same files
-PKG_URL="$DISTRO_SRC/$PKG_NAME-$PKG_VERSION.tar.xz"
-PKG_DEPENDS_TARGET="toolchain"
+PKG_LICENSE="GPL"
+PKG_SITE="http://public.pengutronix.de"
+PKG_URL="http://public.pengutronix.de/mirror/software/ptxdist/temporary-src/$PKG_NAME-$PKG_VERSION.tar.bz2"
+PKG_DEPENDS_HOST="ccache:host"
 PKG_PRIORITY="optional"
-PKG_SECTION="system"
-PKG_SHORTDESC="timezone-data"
-PKG_LONGDESC="timezone-data"
+PKG_SECTION="toolchain/devel"
+PKG_SHORTDESC="localedef: Locale definition compiler"
+PKG_LONGDESC="The localedef program reads the indicated charmap and input files, compiles them to a form usable by the locale(7) functions in the C library, and places the six output files in the outputpath directory."
 
 PKG_IS_ADDON="no"
-PKG_AUTORECONF="no"
+PKG_AUTORECONF="yes"
 
-make_target() {
-  setup_toolchain host
-  make CC="$HOST_CC" CFLAGS="$HOST_CFLAGS"
-}
+PKG_CONFIGURE_OPTS_HOST="--prefix=/usr --with-glibc=../eglibc"
 
-makeinstall_target() {
-  make TOPDIR="./.install_pkg" install
-}
+CFLAGS+=" -fgnu89-inline"
 
-post_makeinstall_target() {
-  mkdir -p $INSTALL/usr/share/zoneinfo
-    mv $INSTALL/etc/zoneinfo/* $INSTALL/usr/share/zoneinfo
-
-  rm -rf $INSTALL/man
-  rm -rf $INSTALL/etc
-
-  mkdir -p $INSTALL/etc
-    ln -sf /var/run/localtime $INSTALL/etc/localtime
-}
-
-post_install() {
-  enable_service tz-data.service
+makeinstall_host() {
+  mkdir -p $ROOT/$TOOLCHAIN/bin
+    cp localedef $ROOT/$TOOLCHAIN/bin
 }
